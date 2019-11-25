@@ -21,12 +21,14 @@
         android:gravity="center">
         
         <TextView
+            android:id="@+id/lottoNumTxt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="35sp"
             android:text="\?"/>
 
         <TextView
+            android:id="@+id/lottoNumTxt2"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,6 +36,7 @@
             android:text="\?"/>
 
         <TextView
+            android:id="@+id/lottoNumTxt3"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,6 +44,7 @@
             android:text="\?"/>
 
         <TextView
+            android:id="@+id/lottoNumTxt4"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,12 +52,14 @@
             android:text="\?"/>
 
         <TextView
+            android:id="@+id/lottoNumTxt5"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="35sp"
             android:text="\?"/>
         <TextView
+            android:id="@+id/lottoNumTxt6"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,12 +80,14 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/myLottoNumTxt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="35sp"
             android:text="3"/>
 
         <TextView
+            android:id="@+id/myLottoNumTxt2"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,6 +95,7 @@
             android:text="10"/>
 
         <TextView
+            android:id="@+id/myLottoNumTxt3"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,18 +103,21 @@
             android:text="17"/>
 
         <TextView
+            android:id="@+id/myLottoNumTxt4"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="35sp"
             android:text="20"/>
         <TextView
+            android:id="@+id/myLottoNumTxt5"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="35sp"
             android:text="40"/>
         <TextView
+            android:id="@+id/myLottoNumTxt6"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,6 +126,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/buyOneLottoBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
