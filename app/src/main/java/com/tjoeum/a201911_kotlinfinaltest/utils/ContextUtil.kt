@@ -12,6 +12,8 @@ class ContextUtil {
 
         val USER_ID_CHECKED = "USER_ID_CHECKED"
 
+        val USER_TOKEN = "USER_TOKEN"
+
         fun setUserId(context: Context, userId: String){
 
             var pref = context.getSharedPreferences(prefnName,Context.MODE_PRIVATE)
@@ -42,5 +44,19 @@ class ContextUtil {
 
         }
 
+        fun setToken(context: Context, token: String){
+
+            var pref = context.getSharedPreferences(prefnName,Context.MODE_PRIVATE)
+
+            pref.edit().putString(USER_TOKEN, token).apply()
+
+        }
+
+        fun getToken(context: Context) : String{
+            var pref = context.getSharedPreferences(prefnName,Context.MODE_PRIVATE)
+
+            return pref.getString(USER_TOKEN,"")!!
+
+        }
     }
 }

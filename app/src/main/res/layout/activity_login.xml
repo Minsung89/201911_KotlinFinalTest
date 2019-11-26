@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             android:text="PW"/>
         <EditText
+            android:inputType="textPassword"
             android:maxLines="1"
             android:id="@+id/loginPwEdt"
             android:layout_width="match_parent"
