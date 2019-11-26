@@ -41,5 +41,10 @@ class MainActivity : BaseActivity() {
             intent = Intent(mContext, LottoActivity::class.java)
             startActivity(intent)
         }
+        loginBtn.setOnClickListener {
+            intent = Intent(mContext, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }
