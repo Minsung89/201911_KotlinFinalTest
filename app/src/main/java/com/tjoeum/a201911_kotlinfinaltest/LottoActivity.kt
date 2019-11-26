@@ -1,12 +1,31 @@
 package com.tjoeum.a201911_kotlinfinaltest
 
 import android.os.Bundle
+import android.os.Handler
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_lotto.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class LottoActivity : BaseActivity() {
+
+    var mHandle = Handler()
+
+    //사용금액
+    var usedMoney = 0L
+    //누적금액
+    var luckMoney = 0L
+    // 당첨 횟수
+    var firstRankCount = 0L
+    var secondRankCount = 0L
+    var thirdRankCount = 0L
+    var fourtRankCount = 0L
+    var fifthRankCount = 0L
+    var wrongRankCount = 0L
+    var rankArrayList = ArrayList<TextView>()
+
+    var bonusNum = 0
 
     var lottoNumArrayList = ArrayList<Int>()
     var thisWeekLottoNumTextViewArrayList = ArrayList<TextView>()
@@ -27,6 +46,15 @@ class LottoActivity : BaseActivity() {
 
         buyOneLottoBtn.setOnClickListener {
             setThisWeekLottoNum()
+
+            checkLottoRank()
+
+            usedMoney += 1000
+            usedMoneyTxt.text = String.format("사용 금액 : %,d원", usedMoney)
+        }
+
+        autoLottoBtn.setOnClickListener {
+            doLottoLoop()
         }
 
     }
@@ -46,13 +74,21 @@ class LottoActivity : BaseActivity() {
         myNumTextViewArrayList.add(myLottoNumTxt5)
         myNumTextViewArrayList.add(myLottoNumTxt6)
 
-        for (myTv in myNumTextViewArrayList){
+        rankArrayList.add(firstRankCountTxt)
+        rankArrayList.add(secondRankCountTxt)
+        rankArrayList.add(thirdRankCountTxt)
+        rankArrayList.add(fourtRankCountTxt)
+        rankArrayList.add(fifthRankCountTxt)
+        rankArrayList.add(wrongRankCountTxt)
+
+        for (myTv in myNumTextViewArrayList) {
             myNumArrayList.add(myTv.text.toString().toInt())
         }
 
     }
 
-    fun checkLottoRank(){
+
+    fun checkLottoRank() {
 
         //6 : 1등 => 20억원
         //5 : 3등 => 150만원
@@ -60,8 +96,74 @@ class LottoActivity : BaseActivity() {
         //3 : 5등 => 5천원
         //그 이하 => 0원
 
+        var correctCount = 0
+
+        for (myNum in myNumArrayList) {
+
+            if (lottoNumArrayList.contains(myNum)) {
+                correctCount++
+            }
+
+        }
+
+        when (correctCount) {
+            3 -> {
+                Toast.makeText(mContext, "5등 당첨!", Toast.LENGTH_SHORT).show()
+                luckMoney += 5000
+                fifthRankCount ++
+                rankArrayList[4].text = String.format("5등 횟수 : %,d", fifthRankCount)
+
+            }
+            4 -> {
+                Toast.makeText(mContext, "4등 당첨!", Toast.LENGTH_SHORT).show()
+                luckMoney += 50000
+                fourtRankCount ++
+                rankArrayList[3].text = String.format("4등 횟수 : %,d", fourtRankCount)
+            }
+            5 -> {
+                Toast.makeText(mContext, "3등 당첨!", Toast.LENGTH_SHORT).show()
+                luckMoney += 1500000
+                thirdRankCount ++
+                rankArrayList[2].text = String.format("3등 횟수 : %,d", thirdRankCount)
+
+            }
+            6 -> {
+                Toast.makeText(mContext, "1등 당첨!", Toast.LENGTH_SHORT).show()
+                luckMoney += 2000000000
+                firstRankCount ++
+                rankArrayList[0].text = String.format("1등 횟수 : %,d", firstRankCount)
+
+
+            }
+            else -> {
+                Toast.makeText(mContext, "꽝!", Toast.LENGTH_SHORT).show()
+                luckMoney += 0
+                wrongRankCount ++
+                rankArrayList[5].text = String.format("꽝! 횟수 : %,d", wrongRankCount)
+            }
+        }
+        luckMoneyTxt.text = String.format("누적 당첨 금액 : %,d원", luckMoney)
 
     }
+
+    fun doLottoLoop(){
+        mHandle.post {
+            if(usedMoney < 100000000){
+                setThisWeekLottoNum()
+                checkLottoRank()
+                usedMoney += 1000
+                usedMoneyTxt.text = String.format("사용 금액 : %,d원", usedMoney)
+
+                doLottoLoop()
+            }
+            else{
+                runOnUiThread {
+                    Toast.makeText(mContext,"로또 구매를 종료합니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
 
 
     fun setThisWeekLottoNum() {
