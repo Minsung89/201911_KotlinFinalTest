@@ -19,11 +19,18 @@ class NoticeListFragment : BaseFragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        setupEvent()
+        setValues()
+
     }
 
     override fun setupEvent() {
     }
 
     override fun setValues() {
+
+
+
     }
 }
