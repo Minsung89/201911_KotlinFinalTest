@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.tjoeum.a201911_kotlinfinaltest.datas.User
 import com.tjoeum.a201911_kotlinfinaltest.utils.ContextUtil
+import com.tjoeum.a201911_kotlinfinaltest.utils.GlobalData
 import com.tjoeum.a201911_kotlinfinaltest.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
@@ -49,8 +50,9 @@ class LoginActivity : BaseActivity() {
                         if(loginIdSaveCb.isChecked)
                             ContextUtil.setUserId(mContext,loginIdEdt.text.toString())
 
+                        GlobalData.loginUserData = userData
+
                         val intent = Intent(mContext, BoardActivity::class.java)
-                        intent.putExtra("user",userData)
                         startActivity(intent)
                         finish()
                     }

@@ -29,4 +29,9 @@ class User :Serializable{
 
     }
 
+    override fun toString(): String {
+        return "User(id=$id, loginId='$loginId', name='$name', phone='$phone', memo='$memo', category=$category)"
+    }
+
+
 }
