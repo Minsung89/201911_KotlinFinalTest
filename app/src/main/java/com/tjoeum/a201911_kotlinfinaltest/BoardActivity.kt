@@ -27,6 +27,7 @@ class BoardActivity : BaseActivity() {
 
         myVP.adapter = ViewPagerAdapter(supportFragmentManager)
 
+        myTabLayout.setupWithViewPager(myVP)
 
     }
 }
