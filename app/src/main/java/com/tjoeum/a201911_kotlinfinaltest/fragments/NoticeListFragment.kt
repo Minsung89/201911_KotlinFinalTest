@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.tjoeum.a201911_kotlinfinaltest.R
 
-class NoticeListFragment : Fragment(){
+class NoticeListFragment : BaseFragment(){
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,4 +21,9 @@ class NoticeListFragment : Fragment(){
         super.onActivityCreated(savedInstanceState)
     }
 
+    override fun setupEvent() {
+    }
+
+    override fun setValues() {
+    }
 }
