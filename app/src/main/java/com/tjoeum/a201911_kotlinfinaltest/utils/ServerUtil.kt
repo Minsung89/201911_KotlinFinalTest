@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
 import java.io.IOException
 import java.util.*
@@ -53,14 +54,80 @@ class ServerUtil {
 
                 }
             })
+        }
+
+
+        fun getRequestNoticeList(context:Context, handler:JsonResponseHandler?) {
+
+            val client = OkHttpClient()
+
+            var urlBuilder = "${BASE_URL}/notice".toHttpUrlOrNull()!!.newBuilder()
+
+            var requestUrl = urlBuilder.build().toString()
+
+            Log.d("가공된GETURL", requestUrl)
+
+            val request = Request.Builder()
+                .url(requestUrl)
+                .header("X-Http-Token",ContextUtil.getToken(context))
+//                    만약 헤더가 필요하면 header() 함수 사용
+                .build()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val body = response.body!!.string()
+                    val jsonObject = JSONObject(body)
+                    handler?.onResponse(jsonObject)
+
+                }
+
+            })
 
 
 
 
         }
 
+        fun getRequestBlackList(context:Context, handler:JsonResponseHandler?) {
+
+            val client = OkHttpClient()
+
+            var urlBuilder = "${BASE_URL}/black_list".toHttpUrlOrNull()!!.newBuilder()
+
+            var requestUrl = urlBuilder.build().toString()
+
+            Log.d("가공된GETURL", requestUrl)
+
+            val request = Request.Builder()
+                .url(requestUrl)
+                .header("X-Http-Token",ContextUtil.getToken(context))
+//                    만약 헤더가 필요하면 header() 함수 사용
+                .build()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val body = response.body!!.string()
+                    val jsonObject = JSONObject(body)
+                    handler?.onResponse(jsonObject)
+
+                }
+
+            })
 
 
+
+
+        }
 
     }
 
