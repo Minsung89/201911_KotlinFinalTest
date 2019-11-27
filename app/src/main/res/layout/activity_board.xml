@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,9 +14,15 @@
         android:text="제목"
         android:textSize="30dp"/>
     <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
+        app:tabIndicatorColor="#000000"
+        app:tabIndicatorHeight="5dp"
+        app:tabTextColor="#FF0000"
+        app:tabSelectedTextColor="#0000FF"
         android:layout_height="wrap_content"
-        ></com.google.android.material.tabs.TabLayout>
-
+        android:layout_width="match_parent"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/myVP"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
